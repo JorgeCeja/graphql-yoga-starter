@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  password: { type: String },
+  // Don't return password unless specified to
+  password: { type: String, select: false },
   todos: [
     {
       content: { type: String }
