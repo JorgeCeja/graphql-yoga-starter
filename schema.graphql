@@ -4,13 +4,14 @@
 
 # Define the type of input expected
 type AuthPayload {
-  token: String
+  token: String!
   user: User
 }
 
 type User {
   _id: ID!
-  email: String!
+  email: String
+  todos: [Todo!]
 }
 
 type Todo {
