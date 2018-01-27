@@ -1,3 +1,5 @@
+const RateLimit = require('express-rate-limit');
+
 const {
   NODE_ENV, MONGODB_URI, SESSION_SECRET, PORT
 } = process.env;
@@ -5,6 +7,11 @@ const {
 const CONFIG = {
   SESSION_SECRET,
   MONGODB_URI,
+  limiter: new RateLimit({
+    windowMs: 15 * 60 * 1000, // 1 minute
+    max: 100, // limit each IP to 100 requests per windowMs
+    delayMs: 0 // disable delaying - full speed until the max limit is reached
+  }),
   options: {
     port: PORT,
     endpoint: '/api',

@@ -31,6 +31,13 @@ const server = new GraphQLServer({
   context: req => ({ ...req })
 });
 
+// only if you're behind a reverse proxy
+// (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
+server.express.enable('trust proxy');
+
+//  apply rate limiter to all requests
+server.express.use(config.limiter);
+
 server.start(config.options, ({ port }) => {
   console.log(`Server running at http://localhost:${port}`);
 });
