@@ -1,0 +1,24 @@
+{
+  "name": "GraphQLTodo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon src/index.js",
+    "start": "NODE_ENV=production node src/index.js",
+    "eslint": "eslint 'src/**/*.js' 'database/**/*.js'"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^4.0.0",
+    "graphql-yoga": "^1.2.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.14.11"
+  }
+}
