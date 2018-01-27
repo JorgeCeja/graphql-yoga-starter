@@ -14,7 +14,7 @@ const signup = async (_, { email, password }) => {
     const _password = await bcrypt.hash(password, 10);
     const user = await new User({ email, password: _password }).save();
 
-    const token = jwt.sign({ userId: user._id }, config.APP_SECRET);
+    const token = jwt.sign({ userId: user._id }, config.SESSION_SECRET);
 
     return { token, user };
   } catch (err) {
@@ -38,7 +38,7 @@ const login = async (_, { email, password }) => {
     delete user.password;
 
     return {
-      token: jwt.sign({ userId: user._id }, config.APP_SECRET),
+      token: jwt.sign({ userId: user._id }, config.SESSION_SECRET),
       user
     };
   } catch (err) {
