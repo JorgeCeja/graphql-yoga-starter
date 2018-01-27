@@ -128,9 +128,7 @@ HTTP HEADERS
 Get All Todos
 ```
 query {
-  allTodos(
-    _id: "5a6437d5cacbed9e62630e13"
-  ) {
+  allTodos {
     _id,
     content
   }
