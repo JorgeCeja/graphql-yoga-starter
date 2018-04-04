@@ -1,3 +1,4 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth/badge.svg)](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth)
 # Todo App - GraphQL Node Server
 
 ## Prerequisites
@@ -17,9 +18,9 @@
 
 Start server
 
-`yarn dev-server` - start development server
+`yarn dev` - start development server
 
-`yarn prod-server` - start production server
+`yarn start` - start production server
 
 To run eslint - find lint errors
 
