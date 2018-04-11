@@ -1,22 +1,18 @@
-const mongoose = require('mongoose');
-const User = require('../../../database/models/UserModel');
+const { pool } = require('../../../database/utils');
 const { authenticate } = require('../../utils/utils');
-
-const { ObjectId } = mongoose.Types;
 
 const createTodo = async (_, { content }, ctx) => {
   const userId = authenticate(ctx);
 
   try {
-    const user = await User.findOne({ _id: userId });
+    const query = {
+      text: 'INSERT INTO todos (user_id, todo) VALUES ($1, $2) RETURNING todo_id, todo',
+      values: [userId, content]
+    };
 
-    const newTodo = { _id: new ObjectId(), content };
+    const { rows: [newTodo] } = await pool.query(query);
 
-    user.todos.push(newTodo);
-
-    user.save();
-
-    return newTodo;
+    return { _id: newTodo.todo_id, content: newTodo.todo };
   } catch (err) {
     throw new Error(err);
   }
@@ -26,19 +22,15 @@ const updateTodo = async (_, { _id, content }, ctx) => {
   const userId = authenticate(ctx);
 
   try {
-    const response = await User.update(
-      { _id: userId, 'todos._id': _id },
-      { $set: { 'todos.$.content': content } }
-    );
+    const query = {
+      text:
+        'UPDATE todos SET todo = $1 WHERE todo_id = $2 AND user_id = $3 RETURNING todo_id, todo',
+      values: [content, _id, userId]
+    };
 
-    // TODO: Find better way to handle error handling
-    if (response.n === 0) {
-      throw new Error('Cannot find your todo!');
-    } else if (response.nModified === 0) {
-      throw new Error('Object was not modified');
-    } else {
-      return { _id, content };
-    }
+    const { rows: [updatedTodo] } = await pool.query(query);
+
+    return { _id: updatedTodo.todo_id, content: updatedTodo.todo };
   } catch (err) {
     throw new Error(err);
   }
@@ -48,20 +40,14 @@ const deleteTodo = async (_, { _id }, ctx) => {
   const userId = authenticate(ctx);
 
   try {
-    const response = await User.update(
-      { _id: userId },
-      { $pull: { todos: { _id } } },
-      { multi: true }
-    );
+    const query = {
+      text: 'DELETE FROM todos WHERE todo_id = $1 AND user_id = $2 RETURNING todo_id, todo',
+      values: [_id, userId]
+    };
 
-    // TODO: Find better way to handle error handling
-    if (response.n === 0) {
-      throw new Error('Cannot find your todo!');
-    } else if (response.nModified === 0) {
-      throw new Error('Object was not modified');
-    } else {
-      return { _id };
-    }
+    const { rows: [deletedTodo] } = await pool.query(query);
+
+    return { _id: deletedTodo.todo_id, content: deletedTodo.todo };
   } catch (err) {
     throw new Error(err);
   }
