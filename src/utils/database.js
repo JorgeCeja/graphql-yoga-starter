@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const { Pool, Client } = require('pg');
-const config = require('../../src/config');
+const config = require('../config');
 
 const connectionString = config.POSTGRESQL_URI;
 

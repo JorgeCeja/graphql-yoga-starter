@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-const { pool } = require('../../../database/utils');
-const { authenticate } = require('../../utils/utils');
+const { pool } = require('../../utils');
+const { authenticate } = require('../../utils');
 
 const createTodo = async (_, { content }, ctx) => {
   const userId = authenticate(ctx);

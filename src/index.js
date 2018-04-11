@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const { GraphQLServer } = require('graphql-yoga');
 const helmet = require('helmet');
-const { checkDbConnection } = require('../database/utils');
+const { checkDbConnection } = require('./utils');
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 const config = require('./config');
