@@ -1,5 +1,5 @@
 {
-  "name": "GraphQLTodo",
+  "name": "graphql-todo",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "graphql-yoga": "^1.2.0",
     "helmet": "^3.10.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.9"
+    "mongoose": "^4.13.9",
+    "pg": "^7.4.1"
   },
   "devDependencies": {
     "eslint": "^4.16.0",

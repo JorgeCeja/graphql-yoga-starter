@@ -1,22 +1,34 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../../../database/models/UserModel');
-const config = require('../../config/config');
+const { pool } = require('../../../database/utils');
+const config = require('../../config');
 
 const signup = async (_, { email, password }) => {
   try {
-    let user = await User.findOne({ email }).lean();
+    let query = {
+      text: 'SELECT email from users WHERE email = $1',
+      values: [email]
+    };
 
-    if (user) {
+    const { rowCount: userFound } = await pool.query(query);
+
+    if (userFound) {
       throw new Error('Email is already taken');
     }
 
     const _password = await bcrypt.hash(password, 10);
-    user = await new User({ email, password: _password }).save();
 
-    const token = jwt.sign({ userId: user._id }, config.SESSION_SECRET);
+    query = {
+      text: 'INSERT INTO users(email, password) VALUES($1, $2) RETURNING user_id, email',
+      values: [email, _password]
+    };
 
-    return { token, user };
+    // deconstruction magic - no need for another varibale
+    const { rows: [user] } = await pool.query(query);
+
+    const token = jwt.sign({ userId: user.user_id }, config.SESSION_SECRET);
+
+    return { token, user: { _id: user.user_id, email: user.email } };
   } catch (err) {
     throw new Error(err);
   }
@@ -24,22 +36,29 @@ const signup = async (_, { email, password }) => {
 
 const login = async (_, { email, password }) => {
   try {
-    const user = await User.findOne({ email }, { password: 1 }).lean();
+    const query = {
+      text: 'SELECT user_id, email, password FROM users WHERE email = $1',
+      values: [email]
+    };
+
+    const { rows: [user] } = await pool.query(query);
+
     if (!user) {
       throw new Error('No such user found');
     }
 
     const valid = await bcrypt.compare(password, user.password);
+
+    // remove password from user object to limit scope (security)
+    user.password = undefined;
+
     if (!valid) {
       throw new Error('Invalid password');
     }
 
-    // remove password from user object which will be returned
-    user.password = undefined;
-
     return {
       token: jwt.sign({ userId: user._id }, config.SESSION_SECRET),
-      user
+      user: { _id: user.user_id, email: user.email }
     };
   } catch (err) {
     throw new Error(err);
