@@ -28,7 +28,7 @@ const signup = async (_, { email, password }) => {
 
     const token = jwt.sign({ userId: user.user_id }, config.SESSION_SECRET);
 
-    return { token, user: { _id: user.user_id, email: user.email } };
+    return { token, user };
   } catch (err) {
     throw new Error(err);
   }
@@ -57,8 +57,8 @@ const login = async (_, { email, password }) => {
     }
 
     return {
-      token: jwt.sign({ userId: user._id }, config.SESSION_SECRET),
-      user: { _id: user.user_id, email: user.email }
+      token: jwt.sign({ userId: user.user_id }, config.SESSION_SECRET),
+      user
     };
   } catch (err) {
     throw new Error(err);

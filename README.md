@@ -37,8 +37,8 @@ SignUp
 ```
 mutation {
   signup(
-    email: "test@test.test"
-    password: "test123"
+    email: "🌮@🌮.🌮"
+    password: "🌮-tuesday"
   ) {
     token
   }
@@ -49,8 +49,8 @@ Login
 ```
 mutation {
   login(
-    email: "test@test.test"
-    password: "test123"
+    email: "🌮@🌮.🌮"
+    password: "🌮-tuesday"
   ) {
     token
   }
@@ -61,14 +61,14 @@ Create Todo
 ```
 mutation {
   createTodo(
-    content: "Do you know the way?"
+    content: "I love 🌮's"
   ) {
-    _id,
+    todo_id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -78,15 +78,15 @@ Update Todo
 ```
 mutation {
   updateTodo(
-    _id: "5a6437d5cacbed9e62630e13",
-    content: "DO YOU KNOW DA WAE UPDATED"
+    todo_id: "1",
+    content: "I love 🌮 tuesday"
   ) {
-    _id,
+    todo_id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -96,13 +96,13 @@ Delete Todo
 ```
 mutation {
   deleteTodo(
-    _id: "5a6437d5cacbed9e62630e13"
+    todo_id: "1"
   ) {
-    _id
+    todo_id
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -114,14 +114,14 @@ Get Todo
 ```
 query {
   Todo(
-    _id: "5a6437d5cacbed9e62630e13"
+    todo_id: "1"
   ) {
-    _id,
+    todo_id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -131,12 +131,12 @@ Get All Todos
 ```
 query {
   allTodos {
-    _id,
+    todo_id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }

@@ -1,7 +1,6 @@
 # "!" denotes a required field
 # "[]" means this is a list of channels
 
-
 # Define the type of input expected
 type AuthPayload {
   token: String!
@@ -9,29 +8,27 @@ type AuthPayload {
 }
 
 type User {
-  _id: ID!
+  user_id: ID!
   email: String
   todos: [Todo!]
 }
 
 type Todo {
-  _id: ID!
+  todo_id: ID!
   content: String!
 }
-
 
 # This type specifies the entry points into our API
 type Query {
   allTodos: [Todo!]!
-  Todo(_id: ID!): Todo!
+  Todo(todo_id: ID!): Todo!
 }
-
 
 # The mutation root type, used to define all mutations
 type Mutation {
   signup(email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   createTodo(content: String!): Todo!
-  updateTodo(_id: ID!, content: String!): Todo!
-  deleteTodo(_id: ID!): Todo!
+  updateTodo(todo_id: ID!, content: String!): Todo!
+  deleteTodo(todo_id: ID!): Todo!
 }

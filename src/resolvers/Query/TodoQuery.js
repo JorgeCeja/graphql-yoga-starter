@@ -1,30 +1,34 @@
-const User = require('../../../database/models/UserModel');
+/* eslint-disable camelcase */
+const { pool } = require('../../../database/utils');
 const { authenticate } = require('../../utils/utils');
 
 const allTodos = async (_, __, ctx) => {
   const userId = authenticate(ctx);
 
   try {
-    // Use lean because we don't need the mongoose object returned
-    const user = await User.findOne({ _id: userId }).lean();
+    const query = {
+      text: 'SELECT todo_id, content FROM todos WHERE user_id = $1',
+      values: [userId]
+    };
 
-    return user.todos;
+    const { rows: todos } = await pool.query(query);
+
+    return todos;
   } catch (err) {
     throw new Error(err);
   }
 };
 
-const Todo = async (_, { _id }, ctx) => {
+const Todo = async (_, { todo_id }, ctx) => {
   const userId = authenticate(ctx);
 
   try {
-    const user = await User.findOne({ _id: userId }).lean();
+    const query = {
+      text: 'SELECT todo_id, content FROM todos WHERE todo_id = $1 AND user_id = $2',
+      values: [todo_id, userId]
+    };
 
-    const todo = user.todos.find(x => x._id.toString() === _id);
-
-    if (!todo) {
-      throw new Error('Cannot find the todo!');
-    }
+    const { rows: [todo] } = await pool.query(query);
 
     return todo;
   } catch (err) {
