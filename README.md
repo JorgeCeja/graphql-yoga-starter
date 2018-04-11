@@ -1,9 +1,10 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth/badge.svg)](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth)
-# Todo App - GraphQL Node Server
+# Todo App - Nodejs GraphQL Server - PostgreSQL
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/) v8
+- [PostgreSQL](https://www.postgresql.org/)
 - [Yarn](https://yarnpkg.com/en/) Prefered
 - [Prettier](https://prettier.io/) Prefered
 
