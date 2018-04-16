@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    build: .
+    # command: yarn start
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRESQL_URI: postgres://graphql:s0me-p4sswd@postgres/todoapp
+  postgres:
+    image: postgres:10.3-alpine
+    environment:
+      POSTGRES_USER: graphql
+      POSTGRES_PASSWORD: s0me-p4sswd
+      POSTGRES_DB: todoapp
+      # POSTGRES_PORT: 5432
