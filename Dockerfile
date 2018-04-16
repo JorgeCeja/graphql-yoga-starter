@@ -6,7 +6,3 @@ COPY package.json .
 RUN npm install -g -s --no-progress yarn && yarn
 
 COPY . .
-
-EXPOSE 8000
-
-CMD ["yarn", "start"]

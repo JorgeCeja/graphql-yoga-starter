@@ -7,6 +7,7 @@
 - [PostgreSQL](https://www.postgresql.org/)
 - [Yarn](https://yarnpkg.com/en/) Prefered
 - [Prettier](https://prettier.io/) Prefered
+- [Docker](https://www.docker.com/) Optional
 
 ## Getting Started
 
@@ -17,21 +18,24 @@
 
 **Note: Make sure to create a long and random hash for `SESSION_SECRET` in the `.env` file**
 
-Start server
+## Start server: 
+
+Normal
 
 `yarn dev` - start development server
 
 `yarn start` - start production server
 
-To run eslint - find lint errors
+Docker compose
 
-`yarn eslint`
+```
+docker-compose up
+```
 
-## GraphQL Playground Queries & Mutations
+<details>
+<summary>GraphQL Playground Queries & Mutations</summary>
 
-**Note:** The `Todo` and `allTodos` queries are redundant and an antipattern. This is due to the fact that `User` containt all the `todos` and is returned on login or signup. The only reason they are there is to have examples of Queries. 
-
-### Mutations
+## Mutations
 
 SignUp
 ```
@@ -108,7 +112,7 @@ mutation {
 }
 ```
 
-###  Queries
+##  Queries
 
 Get Todo
 ```
@@ -141,3 +145,4 @@ query {
   "Authorization": "Bearer __TOKEN__"
 }
 ```
+</details>
