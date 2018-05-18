@@ -1,11 +1,10 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c032a516c90d1ec7dd89/maintainability)](https://codeclimate.com/github/JorgeCeja/graphql-yoga-database/maintainability)  [![Known Vulnerabilities](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth/badge.svg)](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth)
 # Todo App - GraphQL Node Server
 
-## Prerequisites
+## Databases:
 
-- [Node.js](https://nodejs.org/en/) v8
-- [Yarn](https://yarnpkg.com/en/) Prefered
-- [Prettier](https://prettier.io/) Prefered
+1. [MongoDB](https://github.com/JorgeCeja/graphql-yoga-starter)
+2. [PostgreSQL](https://github.com/JorgeCeja/graphql-yoga-starter/tree/with-postgresql)
 
 ## Getting Started
 
@@ -26,18 +25,17 @@ To run eslint - find lint errors
 
 `yarn eslint`
 
-## GraphQL Playground Queries & Mutations
+<details>
+<summary>GraphQL Playground Queries & Mutations</summary>
 
-**Note:** The `Todo` and `allTodos` queries are redundant and an antipattern. This is due to the fact that `User` containt all the `todos` and is returned on login or signup. The only reason they are there is to have examples of Queries. 
-
-### Mutations
+## Mutations
 
 SignUp
 ```
 mutation {
   signup(
-    email: "test@test.test"
-    password: "test123"
+    email: "🌮@🌮.🌮"
+    password: "🌮-tuesday"
   ) {
     token
   }
@@ -48,8 +46,8 @@ Login
 ```
 mutation {
   login(
-    email: "test@test.test"
-    password: "test123"
+    email: "🌮@🌮.🌮"
+    password: "🌮-tuesday"
   ) {
     token
   }
@@ -60,14 +58,14 @@ Create Todo
 ```
 mutation {
   createTodo(
-    content: "Do you know the way?"
+    content: "I love 🌮's"
   ) {
     _id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -77,15 +75,15 @@ Update Todo
 ```
 mutation {
   updateTodo(
-    _id: "5a6437d5cacbed9e62630e13",
-    content: "DO YOU KNOW DA WAE UPDATED"
+    _id: "1",
+    content: "I love 🌮 tuesday"
   ) {
     _id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -95,32 +93,32 @@ Delete Todo
 ```
 mutation {
   deleteTodo(
-    _id: "5a6437d5cacbed9e62630e13"
+    _id: "1"
   ) {
     _id
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
 ```
 
-###  Queries
+##  Queries
 
 Get Todo
 ```
 query {
   Todo(
-    _id: "5a6437d5cacbed9e62630e13"
+    _id: "1"
   ) {
     _id,
     content
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
@@ -135,8 +133,9 @@ query {
   }
 }
 
-HTTP HEADERS
+#HTTP HEADERS
 {
   "Authorization": "Bearer __TOKEN__"
 }
 ```
+</details>
