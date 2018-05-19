@@ -1,6 +1,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c032a516c90d1ec7dd89/maintainability)](https://codeclimate.com/github/JorgeCeja/graphql-yoga-database/maintainability)  [![Known Vulnerabilities](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth/badge.svg)](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth)
 # Todo App - GraphQL Node Server
 
+## Features
+- ___async___ functions
+- Eslint - Airbnb
+- [Helmet](https://github.com/helmetjs/helmet) and [Rate limit](https://github.com/nfriedly/express-rate-limit) middlewares
+
+
 ## Databases:
 
 1. [MongoDB](https://github.com/JorgeCeja/graphql-yoga-starter)
