@@ -1,4 +1,4 @@
-const User = require('../../../database/models/UserModel');
+const User = require('../../database/models/UserModel');
 const { authenticate } = require('../../utils/utils');
 
 const allTodos = async (_, __, ctx) => {

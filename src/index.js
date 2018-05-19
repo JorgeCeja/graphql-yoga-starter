@@ -28,7 +28,7 @@ const resolvers = {
 };
 
 const server = new GraphQLServer({
-  typeDefs: './schema.graphql',
+  typeDefs: './src/schema.graphql',
   resolvers,
   context: req => ({ ...req })
 });

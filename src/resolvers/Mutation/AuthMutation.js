@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../../../database/models/UserModel');
+const User = require('../../database/models/UserModel');
 const config = require('../../config/config');
 
 const signup = async (_, { email, password }) => {
@@ -34,7 +34,7 @@ const login = async (_, { email, password }) => {
       throw new Error('Invalid password');
     }
 
-    // remove password from user object which will be returned
+    // remove password from user object to limit scope (security)
     user.password = undefined;
 
     return {
