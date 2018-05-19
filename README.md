@@ -1,34 +1,41 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c032a516c90d1ec7dd89/maintainability)](https://codeclimate.com/github/JorgeCeja/graphql-yoga-database/maintainability)  [![Known Vulnerabilities](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth/badge.svg)](https://snyk.io/test/github/JorgeCeja/graphql-todo-auth)
 # Todo App - Nodejs GraphQL Server - PostgreSQL
 
-## Prerequisites
+## Features
+- ___async___ functions
+- Eslint - Airbnb
+- [Helmet](https://github.com/helmetjs/helmet) and [Rate limit](https://github.com/nfriedly/express-rate-limit) middlewares
 
-- [Node.js](https://nodejs.org/en/) v8
-- [PostgreSQL](https://www.postgresql.org/)
-- [Yarn](https://yarnpkg.com/en/) Prefered
-- [Prettier](https://prettier.io/) Prefered
-- [Docker](https://www.docker.com/) Optional
+## Databases
+
+1. [MongoDB](https://github.com/JorgeCeja/graphql-yoga-starter)
+2. [PostgreSQL](https://github.com/JorgeCeja/graphql-yoga-starter/tree/with-postgresql)
 
 ## Getting Started
 
-1. `git clone ` + repo URL
-2. `cd` to repo
-3. `yarn` - installing node packages
-4. Create and configure a `.env` file in the root directory 
+```bash
+# Clone repository as AwesomeProject
+https://github.com/JorgeCeja/graphql-yoga-starter/tree/with-postgresql AwesomeProject
 
-**Note: Make sure to create a long and random hash for `SESSION_SECRET` in the `.env` file**
+# Change directory
+cd AwesomeProject
 
-## Start server: 
+## Follow commands based on your package manager
 
-Normal
+# Install NPM dependencies 
+npm install
 
-`yarn dev` - start development server
+# Create and configure a .env file in the root directory
 
-`yarn start` - start production server
+## Workflow:
 
-Docker compose
+# Developement
+npm run dev
 
-```
+# Production
+npm start
+
+# Docker compose
 docker-compose up
 ```
 
