@@ -13,7 +13,7 @@ const config = require('./config/config');
 mongoose.Promise = global.Promise;
 
 // Set up default mongoose connection
-mongoose.connect(config.MONGODB_URI, {
+mongoose.connect(config.DATABASE_URI, {
   useMongoClient: true
 });
 

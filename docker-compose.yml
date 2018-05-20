@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: sh -c './wait-for.sh mongodb:27017 && yarn start'
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongodb
+    environment:
+      DATABASE_URI: mongodb://mongodb:27017/graphql
+  mongodb:
+    image: mongo:3.6.4-jessie
+    ports:
+      - '27017:27017'
